@@ -3,10 +3,7 @@ import mongoose from "mongoose";
 const postSchema = mongoose.Schema({
   title: String,
   slug: String,
-  message: String,
   creator: String,
-  likes: { type: [String], default: [] },
-  unLikes: { type: [String], default: [] },
   comments: [
     {
       message: String,
