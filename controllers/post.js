@@ -6,9 +6,7 @@ export const getLastPosts = async (req, res) => {
     const LIMIT = 10;
     const posts = await Post.find().sort({ _id: -1 }).limit(LIMIT);
 
-    res.json({
-      data: posts,
-    });
+    res.json(posts);
   } catch (error) {
     res.status(404).json({ message: error.message });
   }
@@ -27,7 +25,7 @@ export const getPost = async (req, res) => {
 
   try {
     const LIMIT = 10;
-    const post = await Post.findOne({ title: id });
+    const post = await Post.findOne({ slug: id });
     if (!post) {
       return res.status(200).json({ post: {} });
     }

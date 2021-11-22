@@ -5,6 +5,7 @@ import cors from "cors";
 
 import userRouter from "./routes/user.js";
 import postRouter from "./routes/post.js";
+import agendaRouter from "./routes/agenda.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 app.use("/user", userRouter);
 app.use("/post", postRouter);
+app.use("/agenda", agendaRouter);
 
 const CONNECTION_URL =
   "mongodb+srv://dbSozluk:eskisozluk@cluster0.pkm7t.mongodb.net/test";

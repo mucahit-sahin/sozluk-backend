@@ -20,6 +20,10 @@ const postSchema = mongoose.Schema({
     type: Date,
     default: new Date(),
   },
+  changedAt: {
+    type: Date,
+    default: new Date(),
+  },
 });
 
 var Post = mongoose.model("Post", postSchema);
