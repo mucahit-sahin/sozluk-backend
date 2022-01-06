@@ -18,7 +18,7 @@ app.use(cors());
 app.use("/user", userRouter);
 app.use("/post", postRouter);
 app.use("/agenda", agendaRouter);
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("server is running");
 });
 
