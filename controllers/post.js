@@ -92,3 +92,62 @@ export const addCommentToPost = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const addLikeToComment = async (req, res) => {
+  const post = await Post.findOne({ slug: req.params.id });
+  const user = await User.findOne({ email: req.user.email });
+
+  post.comments[req.params.commentid].likes.push(user.username);
+  try {
+    await post.save();
+
+    res.status(201).json(post);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const removeLikeToComment = async (req, res) => {
+  const post = await Post.findOne({ slug: req.params.id });
+  const user = await User.findOne({ email: req.user.email });
+
+  post.comments[req.params.commentid].likes.pull(user.username);
+
+  try {
+    await post.save();
+
+    res.status(201).json(post);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const addDislikeToComment = async (req, res) => {
+  const post = await Post.findOne({ slug: req.params.id });
+  const user = await User.findOne({ email: req.user.email });
+
+  post.comments[req.params.commentid].unLikes.push(user.username);
+
+  try {
+    await post.save();
+
+    res.status(201).json(post);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const removeDislikeToComment = async (req, res) => {
+  const post = await Post.findOne({ slug: req.params.id });
+  const user = await User.findOne({ email: req.user.email });
+
+  post.comments[req.params.commentid].unLikes.pull(user.username);
+
+  try {
+    await post.save();
+
+    res.status(201).json(post);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
